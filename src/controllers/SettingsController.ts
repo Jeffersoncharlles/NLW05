@@ -1,33 +1,35 @@
-import express, { request, response } from 'express';
-//import express server
+import {Request, Response } from 'express';
+import { getCustomRepository } from 'typeorm';
+import { SettingsRepository } from '../repositories/SettingsRepository';
 
 /*=====================================================================*/
 /*=====================================================================*/
-
-import './database';
-//import db concection
-
 /*=====================================================================*/
-/*=====================================================================*/
-
-import {routes} from './routes';
-//import rotasarquivo
-/*=====================================================================*/
-/*=====================================================================*/
-
-const app = express();
-/*=====================================================================*/
-/*=====================================================================*/
-
-//definir que pode aceitar json
-app.use(express.json());
+class SettingsController{
 
 /*=====================================================================*/
 /*=====================================================================*/
+    async create(req: Request, res: Response){
+        const {chat, username} = req.body;
 
-//acessar todas as rotas no arquivo
-app.use(routes);
+        const settingsRepository = getCustomRepository(SettingsRepository);
 
+        const settings =  settingsRepository.create({
+            chat,
+            username
+        });
+
+        await settingsRepository.save(settings);
+
+        return res.json(settings);
+    }
 /*=====================================================================*/
 /*=====================================================================*/
-app.listen(3333, () => console.log('Server ins running on port 3333'));
+
+
+}
+/*=====================================================================*/
+/*=====================================================================*/
+/*=====================================================================*/
+
+export { SettingsController}
