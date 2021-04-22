@@ -37,7 +37,7 @@ routes.post("/settings",settingsController.create);
 //route create
 
 
-routes.post("/users",settingsController.create);
+routes.post("/users",usersController.create);
 //route create
 
 

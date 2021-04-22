@@ -1,5 +1,5 @@
-import {Request, response, Response } from 'express';
-import { UsersServices } from '../services/UserServices';
+import {Request, Response } from 'express';
+import { UsersServices } from '../services/UsersServices';
 
 /*=====================================================================*/
 /*=====================================================================*/
@@ -17,7 +17,7 @@ class UsersController{
 
         const user = await usersServices.create(email);
 
-        return response.json(user);
+        return res.json(user);
     }
 /*=====================================================================*/
 /*=====================================================================*/
