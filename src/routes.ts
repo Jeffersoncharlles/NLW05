@@ -1,7 +1,5 @@
 import { Router} from 'express';
-import { getCustomRepository } from 'typeorm';
 import { SettingsController } from './controllers/SettingsController';
-import { SettingsRepository } from './repositories/SettingsRepository';
 
 /*=====================================================================*/
 /*=====================================================================*/
