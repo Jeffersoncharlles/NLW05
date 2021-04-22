@@ -23,6 +23,18 @@ class MessagesController{
     }
 /*=====================================================================*/
 /*=====================================================================*/
+    async showByUser(req: Request, res: Response){
+        //localhost:3333/messages/idDoUsuario
+        const {id} = req.params;
+
+        const messagesServices = new MessagesServices();
+
+        const list = await messagesServices.listByUser(id);
+
+        return res.json(list);
+    }
+/*=====================================================================*/
+/*=====================================================================*/
 
 
 }
