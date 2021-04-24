@@ -43,9 +43,9 @@ class UsersServices{
 }
 /*=====================================================================*/
 /*=====================================================================*/
-    async findByEmail(user_id: string){
+    async findByEmail(email: string){
 
-        const user = await this.usersRepository.findOne(user_id);
+        const user = await this.usersRepository.findOne({email});
 
         return user;
         
