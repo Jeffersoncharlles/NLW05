@@ -1,7 +1,8 @@
 const socket = io();
 
 let connectionsUsers = [];
-
+/*=====================================================================*/
+/*=====================================================================*/
 socket.on('admin_list_all_users', (connect) =>{
   connectionsUsers = connect;
 
@@ -22,8 +23,14 @@ socket.on('admin_list_all_users', (connect) =>{
 
   });
 });
+/*=====================================================================*/
+/*=====================================================================*/
 
 //funcao de comunicacao
+/*=====================================================================*/
+/*=====================================================================*/
+/*=====================================================================*/
+/*=====================================================================*/
 function call(id){
 
   //find percorre o array e procura a condicao colocado la
@@ -41,7 +48,12 @@ function call(id){
   const params = {
     user_id:connetion.user_id
   }
+/*=====================================================================*/
+/*=====================================================================*/
+  socket.emit('admin_user_in_support', params);
 
+/*=====================================================================*/
+/*=====================================================================*/
     socket.emit("admin_list_messages_by_user", params, (messages)=>{
       //console.log('Messages', messages);
       const divMessages = document.getElementById(`allMessages${connetion.user_id}`);
@@ -67,8 +79,13 @@ function call(id){
       });
 
     });
+/*=====================================================================*/
+/*=====================================================================*/
 }
-
+/*=====================================================================*/
+/*=====================================================================*/
+/*=====================================================================*/
+/*=====================================================================*/
 function sendMessage(id){
   const text = document.getElementById(`send_message_${id}`);
 
@@ -88,3 +105,27 @@ function sendMessage(id){
   divMessages.appendChild(createDiv);
   text.value = '';
 }
+/*=====================================================================*/
+/*=====================================================================*/
+
+
+/*=====================================================================*/
+/*=====================================================================*/
+  socket.on('admin_receive_message', (data) =>{
+
+    const connection  = connectionsUsers.find( (connetion) => connetion.socket_id = data.socket_id);
+
+    const divMessages = document.getElementById(`allMessages${connection.user_id}`);
+    const createDiv = document.createElement('div');
+
+
+    createDiv.className = 'admin_message_client';
+                
+    createDiv.innerHTML = `<span>${connection.user.email}</span>`;
+    createDiv.innerHTML += `<span>${data.message.text}</span>`;
+    createDiv.innerHTML += `<span class="admin_date">${dayjs(data.message.created_at).format('DD/MM/YYY HH:mm:ss')}</span>`;
+
+    divMessages.appendChild(createDiv);
+  });
+/*=====================================================================*/
+/*=====================================================================*/
