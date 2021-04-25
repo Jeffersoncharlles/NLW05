@@ -39,6 +39,10 @@ app.get('/pages/client',(req,res)=>{
     return res.render('html/client.html');
 })
 
+app.get('/pages/admin',(req,res)=>{
+    return res.render('html/admin.html');
+})
+
 /*=====================================================================*/
 /*=====================================================================*/
 
