@@ -14,7 +14,8 @@ io.on("connection",(socket)=>{
     const connectionsServices = new ConnectionsServices();
     const userServices = new UsersServices();
     const messagesServices = new MessagesServices();
-
+/*=====================================================================*/
+/*=====================================================================*/
     socket.on('client_first_access', async params =>{
         const socket_id = socket.id;
         // console.log(params);
@@ -64,4 +65,6 @@ io.on("connection",(socket)=>{
         socket.emit('client_list_all_messages', allMessages);
 
     });
+/*=====================================================================*/
+/*=====================================================================*/
 });
