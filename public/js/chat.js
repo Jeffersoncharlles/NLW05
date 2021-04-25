@@ -15,7 +15,8 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
   emailUser = email;
 
   const text = document.getElementById("txt_help").value;
-
+/*=====================================================================*/
+/*=====================================================================*/
   socket.on("connect", () => {
     const params = {
       email,
@@ -29,7 +30,8 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
       }
     });
   });
-
+/*=====================================================================*/
+/*=====================================================================*/
   socket.on("client_list_all_messages", (messages) => {
     var template_client = document.getElementById("message-user-template")
       .innerHTML;
@@ -52,7 +54,8 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
       }
     });
   });
-
+/*=====================================================================*/
+/*=====================================================================*/
   socket.on("admin_send_to_client", (message) => {
     socket_admin_id = message.socket_id;
 
@@ -87,4 +90,8 @@ document
     });
 
     document.getElementById("messages").innerHTML += rendered;
+
+    text.value = '';
   });
+/*=====================================================================*/
+/*=====================================================================*/
